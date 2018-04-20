@@ -45,6 +45,12 @@
 			"revisionTime": "2017-12-18T11:18:59Z"
 		},
 		{
+			"checksumSHA1": "2Phn0TPW5cxAvX79mGFyj+e7j6A=",
+			"path": "github.com/astaxie/beego/orm",
+			"revision": "f16688817aa428d10361394015b40d096b680542",
+			"revisionTime": "2017-12-18T11:18:59Z"
+		},
+		{
 			"checksumSHA1": "P2lEqtahO4zkED1m92Ads1Hk978=",
 			"path": "github.com/astaxie/beego/session",
 			"revision": "f16688817aa428d10361394015b40d096b680542",
@@ -61,6 +67,12 @@
 			"path": "github.com/astaxie/beego/utils",
 			"revision": "f16688817aa428d10361394015b40d096b680542",
 			"revisionTime": "2017-12-18T11:18:59Z"
+		},
+		{
+			"checksumSHA1": "8j2neB9bQ6paBj6F68+qaujMRl8=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "3287d94d4c6a48a63e16fffaabf27ab20203af2a",
+			"revisionTime": "2018-04-13T18:15:57Z"
 		},
 		{
 			"checksumSHA1": "Y27Agdpf4FN4HGANJ8cp8+Q6VO4=",
