@@ -1,0 +1,9 @@
+{
+    "protocol":"tcp",
+    "host":"127.0.0.1",
+    "port":3306,
+    "dbtype":"mysql",
+    "dbname":"discuss",
+    "username":"user",
+    "passwd":"user123456"
+}
