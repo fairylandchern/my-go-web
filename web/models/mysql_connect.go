@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql" //导出mysql数据库操作
 )
 
 type connectInfo struct {
