@@ -20,6 +20,14 @@ type connectInfo struct {
 	Protocol string `json:protocol`
 }
 
+var db *sql.DB
+
+func init() {
+	db, _ = GetMysqlConnect()
+	db.SetMaxOpenConns(2000)
+	db.SetMaxIdleConns(1000)
+}
+
 //GetMysqlConnect 获取mysql数据库连接
 func GetMysqlConnect() (*sql.DB, error) {
 	// db, err := sql.Open("mysql", "user:user123456@tcp(127.0.0.1:3306)/discuss")

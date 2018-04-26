@@ -1,7 +1,6 @@
 package models
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 )
@@ -14,15 +13,15 @@ type User struct {
 }
 
 type UserAction interface {
-	AddUser(db *sql.DB) (bool, error)
-	DelUserByUserid(db *sql.DB) (bool, error)
-	UpdateUserByUserID(db *sql.DB) (bool, error)
-	QueryByUserID(db *sql.DB) (*User, error)
-	Query(db *sql.DB) (*[]User, error)
+	AddUser() (bool, error)
+	DelUserByUserid() (bool, error)
+	UpdateUserByUserID() (bool, error)
+	QueryByUserID() (*User, error)
+	Query() (*[]User, error)
 }
 
 //AddUser 添加用户
-func (user *User) AddUser(db *sql.DB) (bool, error) {
+func (user *User) AddUser() (bool, error) {
 	stmt, err := db.Prepare("insert into user(user_name,user_pwd) values(?,?)")
 	defer stmt.Close()
 	if err != nil {
@@ -38,7 +37,7 @@ func (user *User) AddUser(db *sql.DB) (bool, error) {
 }
 
 //DelUserByUserid 根据用户id删除用户
-func (user *User) DelUserByUserid(db *sql.DB) (bool, error) {
+func (user *User) DelUserByUserid() (bool, error) {
 	stmt, err := db.Prepare("delete from user where user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -54,7 +53,7 @@ func (user *User) DelUserByUserid(db *sql.DB) (bool, error) {
 }
 
 //UpdateUserByUserID 通过用户id更新用户信息
-func (user *User) UpdateUserByUserID(db *sql.DB) (bool, error) {
+func (user *User) UpdateUserByUserID() (bool, error) {
 	stmt, err := db.Prepare("update user set user_name=?,user_pwd=? where  user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -70,7 +69,7 @@ func (user *User) UpdateUserByUserID(db *sql.DB) (bool, error) {
 }
 
 //QueryByUserID 根据用户id查询用户信息
-func (user *User) QueryByUserID(db *sql.DB) (*User, error) {
+func (user *User) QueryByUserID() (*User, error) {
 	stmt, err := db.Prepare("select user_name,user_pwd from user where user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -84,6 +83,13 @@ func (user *User) QueryByUserID(db *sql.DB) (*User, error) {
 }
 
 //Query 查询所有用户信息
-func (user *User) Query(db *sql.DB) (*[]User, error) {
+func (user *User) Query() (*[]User, error) {
+	rows, err := db.Query("select user_name,user_pwd,user_id")
+	if err != nil {
+		return nil, err
+	}
+	if rows.Next() {
+		rows.NextResultSet()
+	}
 	return nil, nil
 }
