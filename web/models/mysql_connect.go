@@ -23,13 +23,13 @@ type connectInfo struct {
 var db *sql.DB
 
 func init() {
-	db, _ = GetMysqlConnect()
+	db, _ = getMysqlConnect()
 	db.SetMaxOpenConns(2000)
 	db.SetMaxIdleConns(1000)
 }
 
 //GetMysqlConnect 获取mysql数据库连接
-func GetMysqlConnect() (*sql.DB, error) {
+func getMysqlConnect() (*sql.DB, error) {
 	// db, err := sql.Open("mysql", "user:user123456@tcp(127.0.0.1:3306)/discuss")
 	conf, err := concatConnectString()
 	if err != nil {
@@ -47,7 +47,7 @@ func GetMysqlConnect() (*sql.DB, error) {
 }
 
 //CloseConnect close the connect with the database
-func CloseConnect(db *sql.DB) error {
+func closeConnect(db *sql.DB) error {
 	err := db.Close()
 	return err
 }

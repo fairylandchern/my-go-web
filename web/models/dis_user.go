@@ -12,16 +12,9 @@ type User struct {
 	Passwd string
 }
 
-type UserAction interface {
-	AddUser() (bool, error)
-	DelUserByUserid() (bool, error)
-	UpdateUserByUserID() (bool, error)
-	QueryByUserID() (*User, error)
-	Query() (*[]User, error)
-}
-
+//@router /adduser
 //AddUser 添加用户
-func (user *User) AddUser() (bool, error) {
+func AddUser(user *User) (bool, error) {
 	stmt, err := db.Prepare("insert into user(user_name,user_pwd) values(?,?)")
 	defer stmt.Close()
 	if err != nil {
@@ -37,7 +30,7 @@ func (user *User) AddUser() (bool, error) {
 }
 
 //DelUserByUserid 根据用户id删除用户
-func (user *User) DelUserByUserid() (bool, error) {
+func DelUserByUserid(user *User) (bool, error) {
 	stmt, err := db.Prepare("delete from user where user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -53,7 +46,7 @@ func (user *User) DelUserByUserid() (bool, error) {
 }
 
 //UpdateUserByUserID 通过用户id更新用户信息
-func (user *User) UpdateUserByUserID() (bool, error) {
+func UpdateUserByUserID(user *User) (bool, error) {
 	stmt, err := db.Prepare("update user set user_name=?,user_pwd=? where  user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -69,7 +62,7 @@ func (user *User) UpdateUserByUserID() (bool, error) {
 }
 
 //QueryByUserID 根据用户id查询用户信息
-func (user *User) QueryByUserID() (*User, error) {
+func QueryByUserID(user *User) (*User, error) {
 	stmt, err := db.Prepare("select user_name,user_pwd from user where user_id=?")
 	defer stmt.Close()
 	if err != nil {
@@ -83,13 +76,20 @@ func (user *User) QueryByUserID() (*User, error) {
 }
 
 //Query 查询所有用户信息
-func (user *User) Query() (*[]User, error) {
-	rows, err := db.Query("select user_name,user_pwd,user_id")
+func Query() (*[]User, error) {
+	rows, err := db.Query("select user_name,user_pwd,user_id from user")
 	if err != nil {
 		return nil, err
 	}
-	if rows.Next() {
-		rows.NextResultSet()
+	// if rows.Next() {
+	// 	rows.NextResultSet()
+	// }
+	var users = make([]User, 0)
+	for rows.Next() {
+		u := User{}
+		rows.Scan(&u.Name, &u.Passwd, &u.UserId)
+		// log.Println("数据元素", u.Name, u.Passwd, u.UserId)
+		users = append(users, u)
 	}
-	return nil, nil
+	return &users, nil
 }

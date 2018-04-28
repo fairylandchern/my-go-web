@@ -1,16 +1,17 @@
 package main
 
 import (
-	"my-go-web/web/models"
+	"github.com/astaxie/beego"
+	controllers "my-go-web/web/controllers"
+	_ "my-go-web/web/routers"
 )
 
+
 func main() {
-	// if beego.BConfig.RunMode == "dev" {
-	// 	beego.BConfig.WebConfig.DirectoryIndex = true
-	// 	beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
-	// }
-	// beego.Run()
-	var user = new(models.User)
-	user.UserId = 2
-	user.QueryByUserID()
+	if beego.BConfig.RunMode == "dev" {
+		beego.BConfig.WebConfig.DirectoryIndex = true
+		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+	}
+	beego.ErrorController(&controllers.ErrorController{})
+	beego.Run()
 }
