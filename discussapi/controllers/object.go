@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/astaxie/beego"
+	"log"
 )
 
 // Operations about object
@@ -17,10 +18,11 @@ type ObjectController struct {
 // @Param	body		body 	models.Object	true		"The object content"
 // @Success 200 {string} models.Object.Id
 // @Failure 403 body is empty
-// @router / [post]
+// @router /regist [post]
 func (o *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
+	log.Println("json数据打印:",ob.PlayerName,ob.Score,ob.ObjectId)
 	objectid := models.AddOne(ob)
 	o.Data["json"] = map[string]string{"ObjectId": objectid}
 	o.ServeJSON()
@@ -67,7 +69,7 @@ func (o *ObjectController) Put() {
 	objectId := o.Ctx.Input.Param(":objectId")
 	var ob models.Object
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
-
+	log.Println("json数据打印:",ob.PlayerName,ob.Score,ob.ObjectId)
 	err := models.Update(objectId, ob.Score)
 	if err != nil {
 		o.Data["json"] = err.Error()
