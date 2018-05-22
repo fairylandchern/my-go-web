@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego"
 )
 
 type Company struct {
@@ -24,8 +25,8 @@ func (this *Company) Company() orm.QuerySeter {
 }
 
 //查询
-func (this *Company) query(company *Company)  bool{
-	cond:=orm.NewCondition().And("company_id").Or("company_name")
+func (this *Company) Query(company *Company)  bool{
+	cond:=orm.NewCondition().And("company_id",company.CompanyId).Or("company_name",company.CompanyName)
 	count,err:=this.Company().SetCond(cond).Count()
 	if err!=nil{
 		logs.Error("company:条件查询出错",err.Error())
@@ -38,4 +39,45 @@ func (this *Company) query(company *Company)  bool{
 	}
 }
 
+//插入新数据
+func (this *Company)Create() error  {
+	o:=orm.NewOrm()
+	_,err:=o.Insert(this)
+	if err!=nil{
+		beego.Error("插入数据时出错",err)
+		return err
+	}
+	return nil
+}
+
+//更新数据
+func (this *Company) Update(fileds ...string) error {
+	o:=orm.NewOrm()
+	_,err:=o.Update(this,fileds...)
+	if err!=nil{
+		beego.Error("company更新出错：",err)
+		return err
+	}
+	return nil
+}
+
+//删除company
+func (this *Company) Delete()error  {
+	_,err:=orm.NewOrm().Delete(this)
+	if err!=nil{
+		beego.Error("删除company出错:",err)
+		return err
+	}
+	return nil
+}
+
+//查询company
+func (this *Company) Read(fields ...string) error {
+	err:=orm.NewOrm().Read(this,fields...)
+	if err!=nil{
+		beego.Error("更新company时出错:",err)
+		return err
+	}
+	return nil
+}
 

@@ -7,6 +7,14 @@ import (
 
 func init() {
 
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:CompanyController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:CompanyController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/create`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:DefaultController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:DefaultController"],
 		beego.ControllerComments{
 			Method: "GetAll",
@@ -51,6 +59,14 @@ func init() {
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/regist`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:TitleTypeController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:TitleTypeController"],
+		beego.ControllerComments{
+			Method: "CreateMainType",
+			Router: `/createmaintype`,
 			AllowHTTPMethods: []string{"post"},
 			MethodParams: param.Make(),
 			Params: nil})

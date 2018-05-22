@@ -28,6 +28,11 @@ func init() {
 				&controllers.ObjectController{},
 			),
 		),
+		beego.NSNamespace("/titletype",
+			beego.NSInclude(
+				&controllers.TitleTypeController{},
+			),
+				),
 	)
 	beego.AddNamespace(ns)
 }

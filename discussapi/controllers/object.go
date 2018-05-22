@@ -22,7 +22,7 @@ type ObjectController struct {
 func (o *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
-	log.Println("json数据打印:",ob.PlayerName,ob.Score,ob.ObjectId)
+	//log.Println("json数据打印:",ob.PlayerName,ob.Score,ob.ObjectId)
 	objectid := models.AddOne(ob)
 	o.Data["json"] = map[string]string{"ObjectId": objectid}
 	o.ServeJSON()
