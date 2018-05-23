@@ -17,7 +17,7 @@ func (m *MainTitleType)TableName() string  {
 	return TableName("main_title_type")
 }
 
-func (m *MainTitleType)QuerySetter() orm.QuerySeter {
+func MtypeQuerySetter() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(new(MainTitleType))
 }
 
@@ -25,10 +25,15 @@ func NewMainTitleType()*MainTitleType  {
 	return new(MainTitleType)
 }
 
-func (m *MainTitleType)QueryAll()([]*MainTitleType,error)  {
-	var mains []*MainTitleType
-	_,err:=m.QuerySetter().All(mains)
+func QueryAllMainType()([]MainTitleType,error)  {
+	var mains []MainTitleType
+	_,err:=MtypeQuerySetter().All(mains)
 	return  mains,err
+}
+
+func (m *MainTitleType)QueryByName()bool {
+	i:=MtypeQuerySetter().Filter("MainTitleTypeName",m.MainTitleTypeName).Exist()
+	return i
 }
 
 func (m *MainTitleType)Insert() error  {

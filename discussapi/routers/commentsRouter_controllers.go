@@ -71,6 +71,14 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:TitleTypeController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:TitleTypeController"],
+		beego.ControllerComments{
+			Method: "GetAllMainType",
+			Router: `/getallmaintype`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:UserController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:UserController"],
 		beego.ControllerComments{
 			Method: "Auth",

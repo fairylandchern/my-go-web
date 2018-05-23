@@ -1,20 +1,42 @@
 package controllers
 
 import (
-	"log"
 	"github.com/astaxie/beego/logs"
+	"my-go-web/discussapi/models"
+	"encoding/json"
 )
 
 type TitleTypeController struct {
 	BaseController
 }
 
-
-//@descriptor get the main title type
 //@router /createmaintype [post]
 func (this *TitleTypeController) CreateMainType()  {
-	log.Println(this.Ctx.Input.RequestBody)	//果然不能用log.fatal，否则会报错，并且程序停止运行,以字节的形式打印输出（数字，所以没有看出来）
-	logs.Error(string(this.Ctx.Input.RequestBody))
-	this.Data["json"]=Response{200,"no error","data is success"};
+	var mtype models.MainTitleType
+	json.Unmarshal(this.Ctx.Input.RequestBody,&mtype)
+	logs.Error("the error message is:",mtype.MainTitleTypeName)
+	exist:=mtype.QueryByName()
+	if exist{
+		this.Data["json"]=Response{DATAEXIST,"the data is exist",nil}
+	}else {
+		 err:=mtype.Insert()
+		 if err!=nil{
+		 	this.Data["json"]=Response{INSERTERR,"insert failured",nil}
+		 }else {
+		 	this.Data["json"]=Response{SUCCESS,"",nil}
+		 }
+	}
+	this.ServeJSON()
+}
+//@router /getallmaintype [get]
+func (this *TitleTypeController) GetAllMainType(){
+	var mtypes []models.MainTitleType
+	var err error
+	mtypes,err=models.QueryAllMainType()
+	if err!=nil {
+		this.Data["json"]=Response{GETALLDATAERROR,"数据未读取到",nil}
+	}else {
+		this.Data["json"]=Response{SUCCESS,"",mtypes}
+	}
 	this.ServeJSON()
 }

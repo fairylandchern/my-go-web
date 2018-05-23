@@ -10,7 +10,7 @@ type BaseController struct {
 
 //Response 结构体
 type Response struct {
-	Errcode int         `json:"errcode"`
+	Errcode STATUS        `json:"errcode"`
 	Errmsg  string      `json:"errmsg"`
 	Data    interface{} `json:"data"`
 }
