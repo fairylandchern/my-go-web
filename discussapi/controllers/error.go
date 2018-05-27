@@ -10,22 +10,22 @@ type ErrorController struct {
 
 func (c *ErrorController) Error404() {
 	c.Data["json"] = Response{
-		Errcode: 404,
-		Errmsg:  "Not Found",
+		Status: 404,
+		Msg:  "Not Found",
 	}
 	c.ServeJSON()
 }
 func (c *ErrorController) Error401() {
 	c.Data["json"] = Response{
-		Errcode: 401,
-		Errmsg:  "Permission denied",
+		Status: 401,
+		Msg:  "Permission denied",
 	}
 	c.ServeJSON()
 }
 func (c *ErrorController) Error403() {
 	c.Data["json"] = Response{
-		Errcode: 403,
-		Errmsg:  "Forbidden",
+		Status: 403,
+		Msg:  "Forbidden",
 	}
 	c.ServeJSON()
 }

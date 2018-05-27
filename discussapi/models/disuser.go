@@ -9,8 +9,8 @@ type User struct {
 	Id       int64     `json:"id" orm:"column(id);pk;auto;unique"`
 	Phone    string    `json:"phone" orm:"column(phone);unique;size(11)"`
 	Nickname string    `json:"nickname" orm:"column(nickname);unique;size(40);"`
-	Password string    `json:"-" orm:"column(password);size(40)"`
-	Created  time.Time `json:"create_at" orm:"column(create_at);auto_now_add;type(datetime)"`
+	Password string    `json:"password" orm:"column(password);size(40)"`
+	Created  time.Time `json:"-" orm:"column(create_at);auto_now_add;type(datetime)"`
 	Updated  time.Time `json:"-" orm:"column(update_at);auto_now;type(datetime)"`
 }
 

@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/logs"
 )
 //主栏目标题
 type MainTitleType struct {
@@ -25,9 +26,9 @@ func NewMainTitleType()*MainTitleType  {
 	return new(MainTitleType)
 }
 
-func QueryAllMainType()([]MainTitleType,error)  {
-	var mains []MainTitleType
-	_,err:=MtypeQuerySetter().All(mains)
+func QueryAllMainType()([]*MainTitleType,error)  {
+	var mains []*MainTitleType
+	_,err:=MtypeQuerySetter().All(&mains)
 	return  mains,err
 }
 
@@ -42,11 +43,12 @@ func (m *MainTitleType)Insert() error  {
 }
 
 func (m *MainTitleType) Update() error {
-	_,err:=orm.NewOrm().Update(m,"MainTitleTypeName")
+	i,err:=orm.NewOrm().Update(m,"MainTitleTypeName")
+	logs.Error("the update count is:",i)
 	return err
 }
-
+//需要传递所有参数才可以,如下指定删除某列也是可以的，方法总比困难多
 func (m *MainTitleType)Delete()  error {
-	_,err:=orm.NewOrm().Delete(m)
+	_,err:=orm.NewOrm().Delete(m,"MainTitleTypeName")
 	return err
 }
