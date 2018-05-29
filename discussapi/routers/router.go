@@ -23,16 +23,19 @@ func init() {
 				&controllers.UserController{},
 			),
 		),
-		beego.NSNamespace("/object",
-			beego.NSInclude(
-				&controllers.ObjectController{},
-			),
-		),
 		beego.NSNamespace("/titletype",
 			beego.NSInclude(
 				&controllers.TitleTypeController{},
 			),
 				),
+		beego.NSNamespace("/issue",
+			beego.NSInclude(
+				&controllers.IssueController{},
+			)),
+		beego.NSNamespace("/issue_comment",
+			beego.NSInclude(
+				&controllers.IssueCommentController{},
+			)),
 	)
 	beego.AddNamespace(ns)
 }
