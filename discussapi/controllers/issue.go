@@ -87,7 +87,7 @@ func (this *IssueController)QueryDetail()  {
 	var issue models.Issue
 	err:=json.Unmarshal(this.Ctx.Input.RequestBody,&issue)
 	if err!=nil{
-		beego.Info("parsed error")
+		beego.Info("parsed error",err.Error())
 		this.Data["json"]=Response{READERR,"解析帖子失败",nil}
 	}
 	err=issue.QueryDetailIssue()

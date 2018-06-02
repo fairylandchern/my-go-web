@@ -22,6 +22,7 @@ func main() {
 	}
 	orm.DefaultTimeLoc = time.UTC
 	beego.ErrorController(&controllers.ErrorController{})
+	//服务器端添加对跨域的支持
 	beego.InsertFilter("*", beego.BeforeRouter, cros.Allow(&cros.Options{
 		AllowAllOrigins:  true,
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
