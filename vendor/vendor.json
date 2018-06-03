@@ -69,6 +69,42 @@
 			"revisionTime": "2017-12-18T11:18:59Z"
 		},
 		{
+			"checksumSHA1": "QXa+6wFL5/SbZpen6UlZYNLSVYU=",
+			"path": "github.com/astaxie/beego/validation",
+			"revision": "f16688817aa428d10361394015b40d096b680542",
+			"revisionTime": "2017-12-18T11:18:59Z"
+		},
+		{
+			"checksumSHA1": "VZQva/8tTpmTzdihoMJWwG70JME=",
+			"path": "github.com/beego/bee",
+			"revision": "e90da8f77bba1050b32ce1c7b9b2461d44252546",
+			"revisionTime": "2017-09-14T00:16:02Z"
+		},
+		{
+			"checksumSHA1": "5ZfOw6lZNBRfWlZTQPeL3DRxD9A=",
+			"path": "github.com/beego/bee/cmd/commands",
+			"revision": "e90da8f77bba1050b32ce1c7b9b2461d44252546",
+			"revisionTime": "2017-09-14T00:16:02Z"
+		},
+		{
+			"checksumSHA1": "5hm+1Boe96NIGBOpX+RayT7zvpc=",
+			"path": "github.com/beego/bee/logger/colors",
+			"revision": "e90da8f77bba1050b32ce1c7b9b2461d44252546",
+			"revisionTime": "2017-09-14T00:16:02Z"
+		},
+		{
+			"checksumSHA1": "S5uhI0PqtVwGWetaS82w62R8sZA=",
+			"path": "github.com/dgrijalva/jwt-go",
+			"revision": "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e",
+			"revisionTime": "2018-03-08T23:13:08Z"
+		},
+		{
+			"checksumSHA1": "a/3TYNUV2NoU0EfUmJfd5+r/CLk=",
+			"path": "github.com/dgrijalva/jwt-go/request",
+			"revision": "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e",
+			"revisionTime": "2018-03-08T23:13:08Z"
+		},
+		{
 			"checksumSHA1": "8j2neB9bQ6paBj6F68+qaujMRl8=",
 			"path": "github.com/go-sql-driver/mysql",
 			"revision": "3287d94d4c6a48a63e16fffaabf27ab20203af2a",
