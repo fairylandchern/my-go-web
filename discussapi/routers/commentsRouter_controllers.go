@@ -49,6 +49,14 @@ func init() {
 
 	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"],
 		beego.ControllerComments{
+			Method: "QueryByUser",
+			Router: `/querybyuser/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"],
+		beego.ControllerComments{
 			Method: "Update",
 			Router: `/update`,
 			AllowHTTPMethods: []string{"post"},

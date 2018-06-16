@@ -87,3 +87,23 @@ func (this *IssueCommentController) QueryByIssue() {
 	}
 	defer this.ServeJSON()
 }
+
+//@router /querybyuser/:id [get]
+func (this *IssueCommentController) QueryByUser() {
+	beego.Info("issue::begin", string(this.Ctx.Input.RequestBody))
+	str_issueid := this.Ctx.Input.Param(":id")
+	userid, err := strconv.ParseInt(str_issueid, 10, 64)
+	if err != nil {
+		beego.Info("转换失败", err.Error())
+		this.Data["json"] = Response{READERR, "", nil}
+		return
+	}
+	issues, err := models.QueryCommentByUserId(userid)
+	if err != nil {
+		this.Data["json"] = Response{READERR, "", nil}
+		beego.Info("查询失败")
+	} else {
+		this.Data["json"] = Response{SUCCESS, "", issues}
+	}
+	defer this.ServeJSON()
+}

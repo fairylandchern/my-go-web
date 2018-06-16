@@ -52,7 +52,7 @@ func QueryCommentByIssueId(issueid int64) ([]*IssueComment, error) {
 	}
 }
 
-func QueryCommentByUserId(userid int) ([]*IssueComment, error) {
+func QueryCommentByUserId(userid int64) ([]*IssueComment, error) {
 	var comments []*IssueComment
 	_, err := IssueCommentQueryer().Filter("UserId", userid).All(&comments)
 	if err != nil {
