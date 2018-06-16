@@ -93,3 +93,11 @@ func (usr *User) Delete() error {
 	}
 	return nil
 }
+
+func CheckUserExist(Id int64) bool {
+	count,_:=orm.NewOrm().QueryTable(new(User)).Filter("Id",Id).Count()
+	if count!=0{
+		return true;
+	}
+	return false
+}

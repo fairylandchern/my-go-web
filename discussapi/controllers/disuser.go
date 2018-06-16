@@ -72,4 +72,3 @@ func (this *UserController)Update()  {
 	this.ServeJSON()
 }
 
-//***后续补充吧

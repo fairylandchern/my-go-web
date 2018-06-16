@@ -23,6 +23,54 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "AddFollower",
+			Router: `/addfollower`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "CountBeFollower",
+			Router: `/countbefollwer`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "CountFollower",
+			Router: `/countfollwer`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "DelBeFollower",
+			Router: `/delbefollower`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "Getfans",
+			Router: `/getfans`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:FollowController"],
+		beego.ControllerComments{
+			Method: "GetFollowers",
+			Router: `/getfollowers`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:IssueCommentController"],
 		beego.ControllerComments{
 			Method: "Create",
