@@ -72,3 +72,53 @@ func (this *UserController)Update()  {
 	this.ServeJSON()
 }
 
+//@router /getallusers [get]
+func (this *UserController)GetAllUsers()  {
+	beego.Info("begin user::getallusers",string(this.Ctx.Input.RequestBody))
+	users,err:=models.GetAllUsers()
+	if err!=nil{
+		this.Data["json"]=Response{READERR,"",nil}
+		beego.Info("查询失败")
+	}else {
+		this.Data["json"]=Response{SUCCESS,"",users}
+	}
+	this.ServeJSON()
+}
+
+//@router /delete [post]
+func (this *UserController)Delete()  {
+	beego.Info("issue::begin",string(this.Ctx.Input.RequestBody))
+	var issue models.User
+	err:=json.Unmarshal(this.Ctx.Input.RequestBody,&issue)
+	if err!=nil{
+		beego.Info("parsed error")
+		this.Data["json"]=Response{INSERTERR,"解析帖子失败",nil}
+	}
+	err=issue.Delete()
+	if err!=nil{
+		beego.Info("删除失败")
+		this.Data["json"]=Response{DELETEERR,"删除解析失败",nil}
+	}else {
+		this.Data["json"]=Response{SUCCESS,"删除成功",nil}
+	}
+	this.ServeJSON()
+}
+
+//@router /querydetail [post]
+func (this *UserController)QueryDetail()  {
+	beego.Info("issue::begin",string(this.Ctx.Input.RequestBody))
+	var user models.User
+	err:=json.Unmarshal(this.Ctx.Input.RequestBody,&user)
+	if err!=nil{
+		beego.Info("parsed error",err.Error())
+		this.Data["json"]=Response{READERR,"解析帖子失败",nil}
+	}
+	err=user.GetUserDetail()
+	if err!=nil{
+		this.Data["json"]=Response{READERR,"",nil}
+		beego.Info("查询失败")
+	}else {
+		this.Data["json"]=Response{SUCCESS,"",user}
+	}
+	this.ServeJSON()
+}

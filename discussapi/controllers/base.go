@@ -15,8 +15,3 @@ type Response struct {
 	Data    interface{} `json:"data,omitempty"`
 }
 
-//Response 结构体
-type ErrResponse struct {
-	Errcode int         `json:"errcode"`
-	Errmsg  interface{} `json:"errmsg"`
-}

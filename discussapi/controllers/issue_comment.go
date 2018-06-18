@@ -107,3 +107,16 @@ func (this *IssueCommentController) QueryByUser() {
 	}
 	defer this.ServeJSON()
 }
+
+//@router /getallcomments [get]
+func (this *IssueCommentController)GetAllComments()  {
+	beego.Info("begin user::getallusers",string(this.Ctx.Input.RequestBody))
+	comments,err:=models.QueryComments()
+	if err!=nil{
+		this.Data["json"]=Response{READERR,"",nil}
+		beego.Info("查询失败")
+	}else {
+		this.Data["json"]=Response{SUCCESS,"",comments}
+	}
+	this.ServeJSON()
+}

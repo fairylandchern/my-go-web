@@ -21,7 +21,7 @@ func (this *CompanyController) Post()  {
 	json.Unmarshal(this.Ctx.Input.RequestBody,&company)
 	if err:=company.Create();err!=nil{
 		this.Ctx.ResponseWriter.WriteHeader(403)
-		this.Data["json"]=ErrResponse{403,err.Error()}
+		this.Data["json"]=Response{INSERTERR,"",err.Error()}
 		this.ServeJSON()
 		return
 	}

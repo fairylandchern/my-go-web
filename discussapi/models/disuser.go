@@ -10,7 +10,7 @@ type User struct {
 	Phone    string    `json:"phone" orm:"column(phone);unique;size(11)"`
 	Nickname string    `json:"nickname" orm:"column(nickname);unique;size(40);"`
 	Password string    `json:"password" orm:"column(password);size(40)"`
-	Created  time.Time `json:"-" orm:"column(create_at);auto_now_add;type(datetime)"`
+	Created  time.Time `json:"created" orm:"column(create_at);auto_now_add;type(datetime)"`
 	Updated  time.Time `json:"-" orm:"column(update_at);auto_now;type(datetime)"`
 }
 
@@ -100,4 +100,18 @@ func CheckUserExist(Id int64) bool {
 		return true;
 	}
 	return false
+}
+
+func GetAllUsers() ([]*User, error) {
+	var users []*User
+	_, err := orm.NewOrm().QueryTable(new(User)).OrderBy("-Created").All(&users, "Id", "Phone", "Nickname", "Password", "Created")
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+func (this *User) GetUserDetail() error {
+	err :=  orm.NewOrm().QueryTable(new(User)).Filter("Id", this.Id).One(this)
+	return err
 }

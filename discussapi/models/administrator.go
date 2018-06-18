@@ -33,7 +33,7 @@ func (u *Administrator) UpdateAdmin(fields ...string) (*Administrator,error) {
 
 func (u *Administrator)CheckHasAdmin() bool {
 	cond:=orm.NewCondition()
-	cond=cond.And("Id",u.Id).And("Password",u.Password)
+	cond=cond.And("Nickname",u.Nickname).And("Password",u.Password)
 	exist:=orm.NewOrm().QueryTable(new(Administrator)).SetCond(cond).Exist()
 	orm.NewOrm().QueryTable(new(Administrator)).SetCond(cond).One(u,"Id","Phone","Nickname","Password")
 	return  exist

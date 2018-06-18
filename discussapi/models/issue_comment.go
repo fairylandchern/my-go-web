@@ -61,3 +61,14 @@ func QueryCommentByUserId(userid int64) ([]*IssueComment, error) {
 		return comments, nil
 	}
 }
+
+func QueryComments() ([]*IssueComment, error) {
+	var comments []*IssueComment
+	_, err := IssueCommentQueryer().OrderBy("-Updated").All(&comments)
+	if err != nil {
+		return nil, err
+	} else {
+		return comments, nil
+	}
+}
+
