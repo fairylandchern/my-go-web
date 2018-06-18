@@ -14,7 +14,7 @@ type Issue struct {
 	IssueContent string    `json:"issue_content" orm:"column(issue_content);type(text);size(1073741824)"`
 	IssueTitle   string    `json:"issue_title" orm:"column(issue_title);size(100)"`
 	Created      time.Time `json:"created,omitempty" orm:"column(created);auto_now_add;type(datetime)"`
-	Updated      time.Time `json:"updated,omitempty" orm:"column(updated);auto_now_add;type(datetime)"`
+	Updated      time.Time `json:"updated,omitempty" orm:"column(updated);auto_now;type(datetime)"`
 	TypeId       int       `json:"type_id,omitempty" orm:"column(type_id)" `
 }
 

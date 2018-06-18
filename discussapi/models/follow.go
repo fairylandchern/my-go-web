@@ -84,3 +84,6 @@ func  (f *Follow)GetAllFans()([]*Follow,error)  {
 	}
 	return follows,nil
 }
+
+
+//分页查询如果有时间需要补充实现，下一步优化方向

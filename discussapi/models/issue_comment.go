@@ -12,7 +12,7 @@ type IssueComment struct {
 	UserId        int       `json:"user_id"  orm:"column(user_id)"`
 	ComentContent string    `json:"comment_content" orm:"column(coment_content);size(200)"`
 	Created       time.Time `json:"created,omitempty" orm:"column(created);auto_now_add;type(datetime)"`
-	Updated       time.Time `json:"updated,omitempty" orm:"column(updated);auto_now_add;type(datetime)"`
+	Updated       time.Time `json:"updated,omitempty" orm:"column(updated);auto_now;type(datetime)"`
 }
 
 func init() {

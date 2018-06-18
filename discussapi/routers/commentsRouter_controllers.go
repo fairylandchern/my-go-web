@@ -7,19 +7,19 @@ import (
 
 func init() {
 
+	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:AdministratorController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:AdministratorController"],
+		beego.ControllerComments{
+			Method: "Login",
+			Router: `/login`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:CompanyController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:CompanyController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/create`,
 			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:DefaultController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:DefaultController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"any"},
 			MethodParams: param.Make(),
 			Params: nil})
 
@@ -147,46 +147,6 @@ func init() {
 		beego.ControllerComments{
 			Method: "Update",
 			Router: `/update`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"],
-		beego.ControllerComments{
-			Method: "Get",
-			Router: `/:objectId`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:objectId`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:objectId`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["my-go-web/discussapi/controllers:ObjectController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/regist`,
 			AllowHTTPMethods: []string{"post"},
 			MethodParams: param.Make(),
 			Params: nil})

@@ -16,7 +16,6 @@ import (
 // 使用注释路由
 func init() {
 
-	beego.Router("/", &controllers.DefaultController{}, "*:GetAll")
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/user",
 			beego.NSInclude(
@@ -40,23 +39,10 @@ func init() {
 			beego.NSInclude(
 				&controllers.FollowController{},
 			)),
+		beego.NSNamespace("/admin",
+			beego.NSInclude(
+				&controllers.AdministratorController{},
+			)),
 	)
 	beego.AddNamespace(ns)
 }
-//
-//func init() {
-//	//ns := beego.NewNamespace("/v1",
-//	//	beego.NSNamespace("/object",
-//	//		beego.NSInclude(
-//	//			&controllers.ObjectController{},
-//	//		),
-//	//	),
-//	//	beego.NSNamespace("/user",
-//	//		beego.NSInclude(
-//	//			&controllers.UserController{},
-//	//		),
-//	//	),
-//	//)
-//
-//	beego.AddNamespace(ns)
-//}
